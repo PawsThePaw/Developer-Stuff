@@ -2191,7 +2191,7 @@ local Library do
             })  Items["MainFrame"]:AddToTheme({BackgroundColor3 = "Background", BorderColor3 = "Border"})
 
             
-            Items["MainFrame"].Instance.Position = UDim2New(0.5, 0, 0.5, 0)
+            Items["MainFrame"].Instance.Position = UDim2New(0.5, 0, 0.475, 0)
 
             local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
             UIAspectRatioConstraint.Name = "UIAspectRatioConstraint"
