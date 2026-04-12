@@ -2190,10 +2190,8 @@ local Library do
                 BackgroundColor3 = FromRGB(15, 15, 20)
             })  Items["MainFrame"]:AddToTheme({BackgroundColor3 = "Background", BorderColor3 = "Border"})
 
-            local sizeX = Camera.ViewportSize.X / 4
-            local sizeY = Camera.ViewportSize.Y / 4
-
-            Items["MainFrame"].Instance.Position = UDim2New(0, (Camera.ViewportSize.X / 2) - (sizeX / 2), 0, (Camera.ViewportSize.Y / 2) - (sizeY / 2))
+            
+            Items["MainFrame"].Instance.Position = UDim2New(0, Camera.ViewportSize.X / 4, 0, Camera.ViewportSize.Y / 4)
 
             local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
             UIAspectRatioConstraint.Name = "UIAspectRatioConstraint"
