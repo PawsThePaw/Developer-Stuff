@@ -3827,34 +3827,43 @@ local Library do
             Items["Slider"].Instance.Visible = Bool
         end
 
-        Items["RealSlider"]:Connect("MouseButton1Down", function()
-            Slider.Sliding = true
-
+        local function UpdateSliderFromInput(Input)
             local MousePos = UserInputService:GetMouseLocation()
 
-            local SizeX = (MousePos.X - Items["RealSlider"].Instance.AbsolutePosition.X) / Items["RealSlider"].Instance.AbsoluteSize.X
+            local SliderFrame = Items["RealSlider"].Instance
+
+            local SizeX = (MousePos.X - SliderFrame.AbsolutePosition.X) / SliderFrame.AbsoluteSize.X
             local Value = ((Slider.Max - Slider.Min) * SizeX) + Slider.Min
 
             Slider:Set(Value)
+        end
+
+        Items["RealSlider"]:Connect("InputBegan", function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1
+                or Input.UserInputType == Enum.UserInputType.Touch then
+
+                Slider.Sliding = true
+                UpdateSliderFromInput(Input)
+            end
         end)
 
         Items["RealSlider"]:Connect("InputEnded", function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+            if Input.UserInputType == Enum.UserInputType.MouseButton1
+                or Input.UserInputType == Enum.UserInputType.Touch then
+
                 Slider.Sliding = false
             end
         end)
 
         Library:Connect(UserInputService.InputChanged, function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseMovement and Slider.Sliding then
-                local MousePos = UserInputService:GetMouseLocation()
+            if Slider.Sliding and
+                (Input.UserInputType == Enum.UserInputType.MouseMovement
+                or Input.UserInputType == Enum.UserInputType.Touch) then
 
-                local SizeX = (MousePos.X - Items["RealSlider"].Instance.AbsolutePosition.X) / Items["RealSlider"].Instance.AbsoluteSize.X
-                local Value = ((Slider.Max - Slider.Min) * SizeX) + Slider.Min
-
-                Slider:Set(Value)
+                UpdateSliderFromInput(Input)
             end
         end)
-
+        
         if Slider.Default then
             Slider:Set(Slider.Default)
         end
