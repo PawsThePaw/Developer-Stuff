@@ -2181,7 +2181,7 @@ local Library do
         local Items = { } do 
             Items["MainFrame"] = Instances:Create("Frame", {
                 Parent = Library.Holder.Instance,
-                AnchorPoint = Vector2New(0, 0),
+                AnchorPoint = Vector2New(0.5, 0.5),
                 Name = "\0",
                 Position = UDim2New(0, 0, 0, 0),
                 BorderColor3 = FromRGB(10, 10, 10),
@@ -2191,7 +2191,7 @@ local Library do
             })  Items["MainFrame"]:AddToTheme({BackgroundColor3 = "Background", BorderColor3 = "Border"})
 
             
-            Items["MainFrame"].Instance.Position = UDim2New(0, Camera.ViewportSize.X / 4, 0, Camera.ViewportSize.Y / 4)
+            Items["MainFrame"].Instance.Position = UDim2New(0.5, 0, 0.5, 0)
 
             local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
             UIAspectRatioConstraint.Name = "UIAspectRatioConstraint"
